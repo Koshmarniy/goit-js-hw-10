@@ -68,3 +68,16 @@ function markupCountryInfo(country) {
     countryInfoRef.innerHTML = markup;
 }
 
+function markupCountryList(countries) {
+    const markup = countries
+    .map(({ name: { official: name }, flags: { svg: flags } }) => {
+      return `
+      <li>
+      <img class="flag-img" src="${flags}" alt="${name}">
+      <span class="name-country">${name}</span>
+      </li>`;
+    })
+    .join('');
+
+  countryListRef.innerHTML = markup;
+}
