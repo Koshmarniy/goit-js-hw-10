@@ -12,3 +12,17 @@ const countryInfoRef = document.querySelector('.country-info');
 
 inputRef.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
+function onSearch (e) {
+    const nameCountries = e.target.value.trim();
+
+    clearMarkup();
+
+    if(!nameCountries) {
+        return;
+    }
+    fetchCountries(nameCountries).then(getCountries).catch(fetchError);
+}
+
+function getCountries(countries) {
+    
+}
