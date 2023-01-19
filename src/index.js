@@ -5,3 +5,10 @@ import Notiflix from 'notiflix';
 import debounce from 'lodash.debounce';
 import { fetchCountries } from './fetchCountries';
 const DEBOUNCE_DELAY = 300;
+
+const inputRef = document.querySelector ('#search-box');
+const countryListRef = document.querySelector('.country-list');
+const countryInfoRef = document.querySelector('.country-info');
+
+inputRef.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
+
