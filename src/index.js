@@ -24,5 +24,47 @@ function onSearch (e) {
 }
 
 function getCountries(countries) {
-    
+    const amountCountries = countries.length;
+
+    if (amountCountries === 1) {
+        markupCountryInfo(...countries)
+    } else if (amountCountries >=2 && amountCountries <= 10) {
+        markupCountryList(countries);
+    } else if (amountCountries > 10) {
+        Notiflix.Notify.info(
+            `Too many matches found. Amount: ${amountCountries} Please enter a more specific name.`
+        );
+    }
 }
+
+function fetchError(error){
+    Notiflix.Notify.failure(
+        `Oops, there is no country with that name. \n ${error}`
+    );
+}
+
+function markupCountryInfo(country) {
+    const {
+        name: {official: name},
+        capital,
+        population,
+        flags: {svg: urlFlags},
+        languages,
+    } = country;
+
+    const languagesCountry = Object.values(languages).join(',');
+
+    const markup = `
+    <p class="country">
+    <img class="flag-img" src="${urlFlags}" alt="${name}">
+    <span class="name-country">${name}</span>
+    </p>
+    <ul>
+    <li class="item">Capital: <span class="text">${capital}</span></li>
+    <li class="item">Population: <span class="text">${population}</span></li>
+    <li class="item">Languages: <span class="text">${languagesCountry}</span></li>
+    </ul>`;
+
+    countryInfoRef.innerHTML = markup;
+}
+
