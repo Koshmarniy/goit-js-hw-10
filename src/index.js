@@ -81,3 +81,8 @@ function markupCountryList(countries) {
 
   countryListRef.innerHTML = markup;
 }
+
+function clearMarkup() {
+    countryListRef.innerHTML = '';
+    countryInfoRef.innerHTML = '';
+}
